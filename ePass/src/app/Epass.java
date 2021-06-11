@@ -30,6 +30,7 @@ public abstract class Epass {
         this.codigo = ultCodigo +1;
         ultCodigo++;
         this.emissao = LocalDateTime.now();
+
     }
     public Epass(double saldo, double precoViagem, LocalDate dataCarrega, LocalDate dataValida) {
         this.saldo = saldo;
@@ -46,9 +47,20 @@ public abstract class Epass {
         this.codigo = ultCodigo +1;
         ultCodigo++;
         this.emissao = LocalDateTime.now();
+
+        
     }
 
     
+
+    
+    public Epass(double precoViagem) {
+        this.precoViagem = precoViagem;
+        this.codigo = ultCodigo +1;
+        ultCodigo++;
+        this.emissao = LocalDateTime.now();
+
+    }
     public LocalDateTime getEmissao() {
         return emissao;
     }

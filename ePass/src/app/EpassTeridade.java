@@ -11,12 +11,11 @@ public class EpassTeridade extends PassStandard implements TituloTransporte {
         return horaIni;
     }
 
-  
-    public EpassTeridade(double saldo, double precoViagem, LocalDate dataCarrega, LocalDate dataValida,
-            DocumentID docID, String nome, LocalDate ddn, String morada, String email, int telemovel) {
-        super(saldo, precoViagem, dataCarrega, dataValida, docID, nome, ddn, morada, email, telemovel);
+    public EpassTeridade(double saldo, LocalDate dataCarrega, String codigoDoc, DocumentID docID, String nome,
+            LocalDate ddn, String email) {
+        super(saldo, dataCarrega, codigoDoc, docID, nome, ddn, email);
+        this.setPrecoViagem(40);
     }
-
 
     public void setHoraIni(LocalDateTime horaIni) {
         this.horaIni = horaIni;
@@ -30,35 +29,33 @@ public class EpassTeridade extends PassStandard implements TituloTransporte {
 
     }
 
-   
     @Override
     public void pagarViagem() {
         try {
 
-           
             int valor = 40;
-            if(this.checkValidade()){
-            if (this.getSaldo() < valor) {
-                if (!this.pagarViagemComPontos(40)) {
-                    throw new Exception("Sem saldo, sem pontos");
-                    
-                }
-            }
-            this.setSaldo(this.getSaldo() - valor);
-            this.setNumeroViagens(this.getNumeroViagens() + 1);
-            if (this.getNumeroViagens() % 10 == 0) {
-                this.setPontos(this.getPontos() + 1);
-            }
+            if (this.checkValidade()) {
+                if (this.getSaldo() < valor) {
+                    if (!this.pagarViagemComPontos(40)) {
+                        throw new Exception("Sem saldo, sem pontos");
 
-        }throw new Exception("Sem validade");
-    } catch (Exception error) {
+                    }
+                }
+                this.setSaldo(this.getSaldo() - valor);
+                this.setNumeroViagens(this.getNumeroViagens() + 1);
+                if (this.getNumeroViagens() % 10 == 0) {
+                    this.setPontos(this.getPontos() + 1);
+                }
+
+            }
+            throw new Exception("Sem validade");
+        } catch (Exception error) {
             System.err.println(error);
         }
 
         return;
 
     }
-
 
     @Override
     public boolean checkValidade() {
@@ -71,12 +68,12 @@ public class EpassTeridade extends PassStandard implements TituloTransporte {
     @Override
     public boolean passarSaldo(PassStandard epass, double saldo) {
         if (this.getSaldo() >= saldo) {
-            ((Epass) epass).setSaldo(((Epass) epass).getSaldo()+saldo);
+            ((Epass) epass).setSaldo(((Epass) epass).getSaldo() + saldo);
             this.setSaldo(this.getSaldo() - saldo);
             return true;
         }
 
         return false;
     }
-    
+
 }
