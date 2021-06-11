@@ -1,5 +1,7 @@
 package app;
 
-public class TipoDocumento {
-    
+public enum  TipoDocumento {
+    BI,CUC,PASSPORT,TER
 }
+
+
