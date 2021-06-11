@@ -33,7 +33,7 @@ public class test_passStudent {
 
         System.out.println(bruno.getPontos());   */
        // bruno.pagarViagem();
-      
+      System.out.println(bruno.getEmissao());
 
 
 

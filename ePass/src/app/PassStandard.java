@@ -16,10 +16,6 @@ public abstract class PassStandard extends Epass{
   
     public PassStandard(double saldo, double precoViagem, LocalDate dataCarrega, LocalDate dataValida,PassStandard pass ) {
         super(saldo, precoViagem, dataCarrega, dataValida);
-         /**chavevalida */
-
-         
-
         
 
     }
@@ -45,8 +41,6 @@ public abstract class PassStandard extends Epass{
 
 
         /**Viagens */
-        
-
 
 
     }
@@ -104,9 +98,13 @@ public abstract class PassStandard extends Epass{
         this.chaveValida = chaveValida;
     }
 
-    public void pagarViagemComPontos(int pontos){
-        this.setPontos(this.getPontos()-pontos);
-       
+    public boolean pagarViagemComPontos(int pontos){
+        if(this.getPontos()>100){
+            this.setPontos(this.getPontos()-pontos);
+            return true;
+        }
+
+        return false;
     }
 
 

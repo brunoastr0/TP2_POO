@@ -41,7 +41,7 @@ public class EpassTeridade extends PassStandard implements TituloTransporte {
     }
 
     @Override
-    public <PassStandard> boolean passarSaldo(PassStandard epass, double saldo) {
+    public  boolean passarSaldo(PassStandard epass, double saldo) {
         // TODO Auto-generated method stub
         return false;
     }

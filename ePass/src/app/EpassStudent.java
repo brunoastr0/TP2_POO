@@ -92,13 +92,12 @@ public class EpassStudent extends PassStandard implements TituloTransporte {
             int valor = 20;
             if(this.checkValidade()){
             if (this.getSaldo() < valor) {
-                if (this.getPontos() < 100) {
+                if (!this.pagarViagemComPontos(40)) {
                     if(this.getViagensfree() == 0)
                     throw new Exception("Sem saldo, sem pontos, sem viagens free");
                     this.setViagensfree(this.getViagensfree()-1);
                     return;
                 }
-                this.pagarViagemComPontos(40);
             }
             this.setSaldo(this.getSaldo() - valor);
             this.setNumeroViagens(this.getNumeroViagens() + 1);
@@ -124,9 +123,9 @@ public class EpassStudent extends PassStandard implements TituloTransporte {
     }
 
     @Override
-    public <PassStandard> boolean passarSaldo(PassStandard epass, double saldo) {
+    public boolean passarSaldo(PassStandard epass, double saldo) {
         if (this.getSaldo() >= saldo) {
-            ((Epass) epass).setSaldo(saldo);
+            ((Epass) epass).setSaldo(((Epass) epass).getSaldo()+saldo);
             this.setSaldo(this.getSaldo() - saldo);
             return true;
         }

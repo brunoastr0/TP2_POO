@@ -60,7 +60,7 @@ public class EpassFestival extends PassSazonal implements CartaoPagamento, Titul
         return false;
     }
     @Override
-    public <PassStandard> boolean passarSaldo(PassStandard epass, double saldo) {
+    public  boolean passarSaldo(PassStandard epass, double saldo) {
         // TODO Auto-generated method stub
         return false;
     }

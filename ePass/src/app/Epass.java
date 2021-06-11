@@ -1,6 +1,7 @@
 package app;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public abstract class Epass {
     private final long codigo;
@@ -9,6 +10,9 @@ public abstract class Epass {
     private LocalDate dataCarrega;
     private LocalDate dataValida;
     private static long ultCodigo;
+    private final LocalDateTime emissao;
+
+
 
     static{
         if(Long.valueOf(ultCodigo) == null){
@@ -25,6 +29,7 @@ public abstract class Epass {
         this.dataCarrega = dataCarrega;
         this.codigo = ultCodigo +1;
         ultCodigo++;
+        this.emissao = LocalDateTime.now();
     }
     public Epass(double saldo, double precoViagem, LocalDate dataCarrega, LocalDate dataValida) {
         this.saldo = saldo;
@@ -33,12 +38,19 @@ public abstract class Epass {
         this.dataValida = dataValida;
         this.codigo = ultCodigo +1;
         ultCodigo++;
+        this.emissao = LocalDateTime.now();
         }
     public Epass(double saldo, double precoViagem) {
         this.saldo = saldo;
         this.precoViagem = precoViagem;
         this.codigo = ultCodigo +1;
         ultCodigo++;
+        this.emissao = LocalDateTime.now();
+    }
+
+    
+    public LocalDateTime getEmissao() {
+        return emissao;
     }
     public long getCodigo() {
         return codigo;

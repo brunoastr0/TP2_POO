@@ -6,9 +6,11 @@ public class EpassJovem extends PassStandard implements TituloTransporte{
 
  
 
-    public EpassJovem(double saldo, double precoViagem, LocalDate dataCarrega, LocalDate dataValida, DocumentID docID,
-            String nome, LocalDate ddn, String morada, String email, int telemovel) {
-        super(saldo, precoViagem, dataCarrega, dataValida, docID, nome, ddn, morada, email, telemovel);
+
+    public EpassJovem(double saldo, LocalDate dataCarrega, String codigoDoc, DocumentID docID, String nome,
+            LocalDate ddn, String email) {
+        super(saldo, dataCarrega, codigoDoc, docID, nome, ddn, email);
+        
     }
 
     @Override
@@ -30,7 +32,7 @@ public class EpassJovem extends PassStandard implements TituloTransporte{
     }
 
     @Override
-    public <PassStandard> boolean passarSaldo(PassStandard epass, double saldo) {
+    public  boolean passarSaldo(PassStandard epass, double saldo) {
         // TODO Auto-generated method stub
         return false;
     }

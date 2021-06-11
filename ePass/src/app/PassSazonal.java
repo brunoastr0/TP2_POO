@@ -3,9 +3,12 @@ package app;
 import java.time.LocalDate;
 
 public abstract class PassSazonal extends Epass{
-    public PassSazonal(double saldo, double precoViagem, LocalDate dataCarrega, LocalDate dataValida) {
-        super(saldo, precoViagem, dataCarrega, dataValida);
-        //TODO Auto-generated constructor stub
+   
+    
+    public PassSazonal(double saldo, LocalDate dataCarrega) {
+        super(saldo, dataCarrega);
+        this.chaveValida = this.getEmissao()+""+this.getCodigo();
+        this.setChaveValida(chaveValida);
     }
 
     private String chaveValida;

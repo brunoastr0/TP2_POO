@@ -45,7 +45,7 @@ public class EpassFuncionario extends PassStandard implements TituloTransporte{
     }
 
     @Override
-    public <PassStandard> boolean passarSaldo(PassStandard epass, double saldo) {
+    public boolean passarSaldo(PassStandard epass, double saldo) {
         if (this.getSaldo() >= saldo) {
             ((Epass) epass).setSaldo(saldo);
             this.setSaldo(this.getSaldo() - saldo);
