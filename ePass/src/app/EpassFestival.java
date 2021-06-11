@@ -8,17 +8,17 @@ public class EpassFestival extends PassSazonal implements CartaoPagamento, Titul
     
     public EpassFestival(double saldo, double precoViagem, LocalDate dataCarrega, LocalDate dataValida,
             double saldoCartaoPgmt, String nomeEvento) {
-        super(saldo, precoViagem, dataCarrega, dataValida);
+        super(saldo, dataCarrega);
         this.saldoCartaoPgmt = saldoCartaoPgmt;
         this.nomeEvento = nomeEvento;
     }
-    public EpassFestival(double saldo, double precoViagem, LocalDate dataCarrega, LocalDate dataValida,
+    public EpassFestival(double saldo, LocalDate dataCarrega,
             String nomeEvento) {
-        super(saldo, precoViagem, dataCarrega, dataValida);
+        super(saldo, dataCarrega);
         this.nomeEvento = nomeEvento;
     }
-    public EpassFestival(double saldo, double precoViagem, LocalDate dataCarrega, LocalDate dataValida, EpassFestival outro) {
-        super(saldo, precoViagem, dataCarrega, dataValida);
+    public EpassFestival(double saldo, LocalDate dataCarrega, EpassFestival outro) {
+        super(saldo, dataCarrega);
     }
 
     

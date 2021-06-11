@@ -1,6 +1,6 @@
 package app;
 
 public enum Duracao {
-    SETE, TRES, UM, duracao
+    SETE, TRES, UM
 }
 

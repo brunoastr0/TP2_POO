@@ -23,27 +23,60 @@ public class EpassTeridade extends PassStandard implements TituloTransporte {
     }
 
     @Override
-    public void carregar(double epass) {
-        // TODO Auto-generated method stub
+    public void carregar(double saldo) {
+        this.setSaldo(this.getSaldo() + saldo);
+        this.setDataCarrega(LocalDate.now());
+        this.setDataValida(LocalDate.now().plusDays(30));
 
     }
 
+   
     @Override
     public void pagarViagem() {
-        // TODO Auto-generated method stub
+        try {
+
+           
+            int valor = 40;
+            if(this.checkValidade()){
+            if (this.getSaldo() < valor) {
+                if (!this.pagarViagemComPontos(40)) {
+                    throw new Exception("Sem saldo, sem pontos");
+                    
+                }
+            }
+            this.setSaldo(this.getSaldo() - valor);
+            this.setNumeroViagens(this.getNumeroViagens() + 1);
+            if (this.getNumeroViagens() % 10 == 0) {
+                this.setPontos(this.getPontos() + 1);
+            }
+
+        }throw new Exception("Sem validade");
+    } catch (Exception error) {
+            System.err.println(error);
+        }
+
+        return;
 
     }
+
 
     @Override
     public boolean checkValidade() {
-        // TODO Auto-generated method stub
+        LocalDate dateHJ = LocalDate.now();
+        if (this.getDataValida().isAfter(dateHJ))
+            return true;
         return false;
     }
 
     @Override
-    public  boolean passarSaldo(PassStandard epass, double saldo) {
-        // TODO Auto-generated method stub
+    public boolean passarSaldo(PassStandard epass, double saldo) {
+        if (this.getSaldo() >= saldo) {
+            ((Epass) epass).setSaldo(((Epass) epass).getSaldo()+saldo);
+            this.setSaldo(this.getSaldo() - saldo);
+            return true;
+        }
+
         return false;
     }
-
+    
 }
